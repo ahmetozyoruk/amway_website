@@ -4,7 +4,7 @@
       style="border-radius: 3%"
       class="mx-auto"
       min-width="200px"
-      max-width="506"
+      max-width="498"
       outlined
     >
       <v-list-item three-line>
@@ -66,58 +66,58 @@
           </div>
           <v-divider />
           <v-container class="pa-10">
-            <h2>Register</h2>
+            <h1 style="font-size: 1.9rem; color:#1b0d5e;" class="my-3" >Create your Amway ID</h1>
             <form>
-              <v-text-field
-                v-model="name"
-                :counter="10"
-                :error-messages="errors"
-                label="Name"
-                required
-              ></v-text-field>
-              <v-text-field
-                v-model="phoneNumber"
-                :counter="7"
-                :error-messages="errors"
-                label="Phone Number"
-                required
-              ></v-text-field>
+              <v-row md="1">
+              <v-col md="10" class=" my-5 ">
+              <h2 class="my-1" style="font-size:medium;color:#1b0d5e" >Country where you do business with Amway </h2></v-col>
+              <v-col md="2" class=" my-3 ">
+              <v-btn icon>
+              <v-icon small> {{ icons.mdiHelpCircle }} </v-icon>
+              </v-btn></v-col></v-row>
+              <v-select
+                :items="items"
+                label="Turkey "
+                color="#1b0d5e"
+                outlined
+              ></v-select>
+              <h2 class="my-2" style="font-size:medium;color:#1b0d5e" >Amway ID </h2>
               <v-text-field
                 v-model="email"
                 :error-messages="emailErrors"
-                label="E-mail"
-                required
+                label="Email Address"
+                color="#1b0d5e"
+                outlined
                 @input="$v.email.$touch()"
                 @blur="$v.email.$touch()"
               ></v-text-field>
+              <h2 class="my-2" style="font-size:medium;color:#1b0d5e" >Create New Password </h2>
               <v-text-field
                 v-model="password"
+                :append-icon="icons.mdiEyeOffOutline"
                 :error-messages="nameErrors"
                 type="password"
-                label="Password"
-                required
+                label="Create New Password"
+                color="#1b0d5e"
+                outlined
                 @input="$v.password.$touch()"
                 @blur="$v.password.$touch()"
               ></v-text-field>
+              <h2 class="my-2" style="font-size:medium;color:#1b0d5e" >Confirm New Password </h2>
               <v-text-field
                 v-model="password"
                 :error-messages="nameErrors"
+                :append-icon="icons.mdiEyeOffOutline"
                 type="password"
-                label="Password"
-                required
+                label="Confirm New Password"
+                color="#1b0d5e"
+                outlined
                 @input="$v.password.$touch()"
                 @blur="$v.password.$touch()"
-              ></v-text-field>
+                ></v-text-field>
 
-              <v-btn block color="#034580" @click="submit"> SIGN IN </v-btn>
+              <v-btn block color="#002F5F" class="white--text"  @click="submit">CONTINUE</v-btn>
             </form>
-            <div class="pt-5 d-flex">
-              <v-spacer></v-spacer>
-              <NuxtLink class="mr-1" to="/">Forgot Password</NuxtLink>
-              |
-              <NuxtLink class="ml-1" to="/">Forgot Amway ID</NuxtLink>
-              <v-spacer></v-spacer>
-            </div>
           </v-container>
         </v-list-item-content>
       </v-list-item>
@@ -125,8 +125,8 @@
 
     <div class="d-flex mt-5">
       <v-spacer></v-spacer>
-      Don't have an Amway ID?
-      <NuxtLink class="ml-1" to="/">Create an Amway ID</NuxtLink>
+      Already have an account?
+      <NuxtLink class="ml-1" to="/SignIn"> Sign In</NuxtLink>
       <v-spacer></v-spacer>
     </div>
   </v-sheet>
@@ -136,6 +136,8 @@
 
 <script>
 import { mdiClose } from '@mdi/js'
+import { mdiHelpCircle } from '@mdi/js';
+import { mdiEyeOffOutline } from '@mdi/js';
 import { validationMixin } from 'vuelidate'
 import { required, email } from 'vuelidate/lib/validators'
 
@@ -144,16 +146,20 @@ export default {
   validations: {
     password: { required },
     email: { required, email },
+
   },
   data() {
     return {
       icons: {
         mdiClose,
+        mdiHelpCircle,
+        mdiEyeOffOutline,
       },
       password: '',
       email: '',
       name: '',
       phoneNumber: '',
+      items: ['Turkey','Netherlands', 'New Zealand', 'Norway', 'Panama'],
     }
   },
   computed: {

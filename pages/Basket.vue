@@ -1,8 +1,8 @@
 <template>
-  <v-container >
+  <v-container>
     <div
       class="px-auto mx-auto"
-      style="width: 75%; border-color: #008fc5; border-style: solid"
+      style="width: 100%; border-color: #008fc5; border-style: solid"
     >
       <div
         class="d-flex"
@@ -18,8 +18,10 @@
         <v-icon class="mx-5" color="white">{{ icons.mdiTrashCan }}</v-icon>
       </div>
       <v-row>
-        <span style="width: 50%" class="d-flex justify-center pa-15">
-          <div>
+        <span class="d-flex justify-center pa-5">
+        <span style="width: 50%" class="d-flex justify-center pa-5">
+          <v-col>
+              <div>
             <div class="text-h6">
               Artistry Studio™ Los Angeles Edition Lights, Camera, Face Stick
             </div>
@@ -29,38 +31,42 @@
             </div>
             <NuxtLink to="/">Home page -></NuxtLink>
             <div class="text-subtitle-1">Ordering number: 124678</div>
-            <div class="text-subtitle-1">Size: 5,5gr</div>
+            <div class="text-subtitle-1" >Size:5,5gr</div>
             <div
               class="ml-10"
               style="width: 40; height: 100; color: #f7f7f7"
             ></div>
-          </div>
+             </div>
+          </v-col>
         </span>
         <div style="width: 15em;"></div>
-        <span class="d-flex justify-end">
-        <v-card
-          style="background-color: transparent"
-          flat
-          class="py-12 my-auto"
-        >
-          <v-card-text>
-            <v-row>
-              <v-btn-toggle v-model="toggle_exclusive" mandatory>
-                <v-btn class="mr-1"> - </v-btn>
-                <v-btn class="mr-1"> 1 </v-btn>
-                <v-btn class="mr-1"> + </v-btn>
-              </v-btn-toggle>
-            </v-row>
-          </v-card-text>
-        </v-card>
-        <div class="text-subtitle-1 my-auto mx-10">Size: 5,5gr</div>
-        <v-icon color="red">{{ icons.mdiTrashCan }}</v-icon>
+
+          <span class="d-flex justify-end">
+            <v-card
+              style="background-color: transparent"
+              flat
+              class="py-12 my-auto"
+            >
+
+              <v-card-text >
+               <v-row>
+                  <v-btn-toggle v-model="toggle_exclusive" mandatory>
+                   <v-btn class="mr-1"> - </v-btn>
+                   <v-btn class="mr-1"> 1 </v-btn>
+                   <v-btn class="mr-1"> + </v-btn>
+                   </v-btn-toggle>
+                </v-row>
+              </v-card-text>
+            </v-card>
+            <div class="text-subtitle-1 my-auto mx-10">Size: 5,5gr</div>
+            <v-icon color="red">{{ icons.mdiTrashCan }}</v-icon>
+          </span>
         </span>
       </v-row>
 
-      <v-divider style="background-color: red" class="ma-1 mb-5"></v-divider>
+        <v-divider style="background-color: red" class="ma-1 mb-5"></v-divider>
 
-      <div class="d-flex justify-end pa-8">
+        <div class="d-flex justify-end pa-8">
         <div style="width: 35%; height: 100">
           <v-row>
             <span class="text-subtitle-1">Subtotal</span>
@@ -79,9 +85,9 @@
           <div class="d-flex justify-end mt-3">
             <NuxtLink to="/">(incl. Total Tax=TL361.89)</NuxtLink>
           </div>
-        </div>
+         </div>
+       </div>
       </div>
-    </div>
 
     <div
     class="px-auto mx-auto d-flex mt-10"
@@ -90,7 +96,7 @@
           <div class="my-auto text-h6 ml-3" style="color: white">Order total</div>
           <div class="my-auto text-body ml-3" style="color: white">(excluding delivery)</div>
           <v-spacer></v-spacer>
-          <div class="d-flex my-auto">
+          <div class="d-flex my-auto mx-5" >
             <div class="mr-3" style="color: white">18 items</div>
             <div class="mr-3" style="color: white">TL2,372,40</div>
           </div>

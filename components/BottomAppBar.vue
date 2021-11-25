@@ -44,8 +44,19 @@
             </v-list-item>
           </v-list>
         </v-menu>
-        <v-btn text> ABOUT AMWAY </v-btn>
-        <v-btn text> BUSINESS OPPORTUNITY </v-btn>
+        <v-tabs
+          background-color="transparent"
+          center-active
+          dark
+        >
+        <v-tabs-slider color="red"></v-tabs-slider>
+        <v-tab>
+        <v-btn text color="black" class="my-10"> ABOUT AMWAY </v-btn>
+        </v-tab>
+        <v-tab>
+        <v-btn text color="black" class="my-10"> BUSINESS OPPORTUNITY </v-btn>
+        </v-tab>
+        </v-tabs>
         <v-spacer></v-spacer>
       </v-container>
     </v-app-bar>

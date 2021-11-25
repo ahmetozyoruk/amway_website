@@ -1,6 +1,6 @@
 <template>
   <v-sheet>
-    <v-app-bar height="75" class="pt-3" dense dark color="#034580" style="padding-left: 18em;padding-right: 18em;">
+    <v-app-bar height="75" class="pt-3" dense dark color="#034580">
       <v-container class="d-flex flex-row">
         <v-app-bar-nav-icon class="ml-15">
           <NuxtLink to="/">
@@ -13,7 +13,7 @@
           </NuxtLink>
         </v-app-bar-nav-icon>
 
-        <v-text-field solo light class="ml-15">
+        <v-text-field solo light class="ml-15" placeholder="I'm looking for">
           <v-icon slot="append"> {{ icons.mdiMagnify }} </v-icon>
         </v-text-field>
 
@@ -28,6 +28,7 @@
             text
             v-bind="attrs"
             v-on="on"
+            class="my-3"
           >
             EN
             <v-icon large onmouseover=""> {{ icons.mdiChevronDown }} </v-icon>
@@ -47,13 +48,15 @@
 
         <v-divider vertical light></v-divider>
 
-        <v-btn text to="SingIn"> Sign in </v-btn>
+        <v-btn text to="SingIn" class="my-3"> Sign in </v-btn>
         <v-divider vertical light></v-divider>
-        <v-btn text to="Register"> Register </v-btn>
+        <v-btn text to="Register" class="my-3"> Register </v-btn>
         <v-divider vertical light></v-divider>
-        <v-btn icon to="/Basket">
-          <v-icon large> {{ icons.mdiCart }} </v-icon>
+
+        <v-btn icon to="Basket" class="my-2" >
+          <v-icon large > {{ icons.mdiCart }} </v-icon>
         </v-btn>
+
       </v-container>
     </v-app-bar>
   </v-sheet>
