@@ -1,12 +1,13 @@
 <template>
-  <div class="mt-5" justify="center" align="center">
+  <div class="mt-5,width:100%,height:100%" >
 
-      <v-carousel hide-delimiters>
+      <v-carousel show-arrows-on-hover >
         <v-carousel-item
           v-for="(item, i) in items"
           :key="i"
           :src="item.src"
-        ></v-carousel-item>
+        ></v-carousel-item> 
+        
       </v-carousel>
   </div>
 </template>
@@ -17,16 +18,19 @@
       return {
         items: [
           {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+            src: '/photos/1.jpeg',
           },
           {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+            src: '/photos/2.jpeg',
           },
           {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
+            src: '/photos/3.jpeg',
           },
           {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
+            src: '/photos/4.jpeg',
+          },
+          {
+            src: '/photos/5.jpeg',
           },
         ],
       }

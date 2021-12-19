@@ -1,6 +1,12 @@
 <template>
-  <v-sheet  color="#F4F4F4" style="width: 100%; height: 40em" class="pa-15">
-    <v-card style="border-radius: 3%;" class="mx-auto" min-width="200px" max-width="506" outlined>
+  <v-sheet color="#F4F4F4" width="100%" class="pa-15">
+    <v-card
+      style="border-radius: 3%"
+      class="mx-auto"
+      min-width="200px"
+      max-width="498"
+      outlined
+    >
       <v-list-item three-line>
         <v-list-item-content>
           <div class="d-flex flex-row my-5">
@@ -59,45 +65,55 @@
             </v-btn>
           </div>
           <v-divider />
-          <v-container class="pa-10">
-            <h2 class="Sing In">Sing In</h2>
-            <form>
+           <v-container class="pa-10">
+             <h1 style="font-size: 2rem; color:#1b0d5e;" class="my-3" >  SING IN</h1>
+             <form>
+              <h2 class="my-2" style="font-size:medium;color:#1b0d5e" >Amway ID </h2>
               <v-text-field
                 v-model="email"
                 :error-messages="emailErrors"
-                label="E-mail"
-                required
+                label="Email or Username"
+                color="#1b0d5e"
+                outlined
                 @input="$v.email.$touch()"
                 @blur="$v.email.$touch()"
               ></v-text-field>
+              <h2 class="my-2" style="font-size:medium;color:#1b0d5e" > Password </h2>
               <v-text-field
                 v-model="password"
+                :append-icon="icons.mdiEyeOffOutline"
                 :error-messages="nameErrors"
                 type="password"
                 label="Password"
-                required
+                color="#1b0d5e"
+                outlined
                 @input="$v.password.$touch()"
                 @blur="$v.password.$touch()"
               ></v-text-field>
-
-              <v-btn block color="#034580" @click="submit"> SIGN IN </v-btn>
+              <v-btn block color="#002F5F" class="white--text"  @click="submit">SING IN</v-btn><v-spacer></v-spacer>
+              <div>
+              <v-row md="12">
+                <v-spacer></v-spacer>
+                <v-col  md="5">
+                  <h4 style="color:#007699"> Forgot Password</h4>
+                </v-col>
+                <v-divider vertical light></v-divider>
+                <v-col md="5">
+                  <h4 style="color:#007699"> Forgot Amway ID</h4>
+                </v-col>
+                <v-spacer></v-spacer>
+              </v-row> 
+              </div>
             </form>
-            <div class="pt-5 d-flex">
-              <v-spacer></v-spacer>
-              <NuxtLink class="mr-1" to="/">Forgot Password</NuxtLink>
-              |
-              <NuxtLink class="ml-1" to="/">Forgot Amway ID</NuxtLink>
-              <v-spacer></v-spacer>
-            </div>
           </v-container>
         </v-list-item-content>
       </v-list-item>
     </v-card>
 
-
     <div class="d-flex mt-5">
       <v-spacer></v-spacer>
-        Don't have an Amway ID? <NuxtLink class="ml-1" to="/">Create an Amway ID</NuxtLink>
+      Don't have an Amway ID?
+      <NuxtLink class="ml-1" to="/Register">Create an Amway ID</NuxtLink>
       <v-spacer></v-spacer>
     </div>
   </v-sheet>
@@ -107,6 +123,8 @@
 
 <script>
 import { mdiClose } from '@mdi/js'
+import { mdiHelpCircle } from '@mdi/js';
+import { mdiEyeOffOutline } from '@mdi/js';
 import { validationMixin } from 'vuelidate'
 import { required, email } from 'vuelidate/lib/validators'
 
@@ -115,14 +133,17 @@ export default {
   validations: {
     password: { required },
     email: { required, email },
+
   },
   data() {
     return {
       icons: {
         mdiClose,
+        mdiHelpCircle,
+        mdiEyeOffOutline,
       },
       password: '',
-      email: '',
+      email:'',
     }
   },
   computed: {

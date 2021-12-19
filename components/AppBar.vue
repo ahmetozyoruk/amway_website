@@ -13,10 +13,13 @@
           </NuxtLink>
         </v-app-bar-nav-icon>
 
-        <v-text-field solo light class="ml-15" placeholder="I'm looking for">
-          <v-icon slot="append"> {{ icons.mdiMagnify }} </v-icon>
-        </v-text-field>
-
+            <v-text-field solo light class="ml-15" placeholder="I'm looking for">
+            </v-text-field>
+            
+               <v-btn class="mr-3" color="#002F5F" large >
+                <v-icon  color="white"> {{ icons.mdiMagnify }} </v-icon>
+             </v-btn>
+            
         <v-spacer></v-spacer>
         <v-menu
         left

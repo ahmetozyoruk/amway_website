@@ -13,15 +13,16 @@
         <v-col cols="9">
           <v-row>
             <v-col
-              v-for="(item, index) in Productlist"
+              v-for="(product,index) in products"
               :key="index"
               cols="12"
               md="3"
             >
               <v-item v-slot="{ active}">
                 <ProductListItem
+                  :key="product.id"
                   :color="active ? 'primary' : ''"
-                  :product="item"
+                  :product="product"
 
                 >
                   <v-scroll-y-transition>
@@ -43,128 +44,26 @@
 import ProductListItem from '~/components/ProductListItem.vue'
 import NavigatePageTree from '~/components/NavigatePageTree.vue'
 import CategoriProductList from '~/components/CategoriProductList.vue'
+
 export default {
   components: {
     ProductListItem,
     NavigatePageTree,
     CategoriProductList,
   },
-  data: () => ({
-    model: null,
-    Productlist: [
-      {
-        id: 0,
-        image: 'https://picsum.photos/200/300',
-        title: 'asdasdasd',
-        price: 15,
-        order_number: 15651,
-        quantity: 0,
-      },
-      {
-        id: 0,
-        image: 'https://picsum.photos/200/300',
-        title: 'asdasdasd',
-        price: 15,
-        order_number: 15651,
-        quantity: 0,
-      },
-      {
-        id: 0,
-        image: 'https://picsum.photos/200/300',
-        title: 'asdasdasd',
-        price: 15,
-        order_number: 15651,
-        quantity: 0,
-      },
-      {
-        id: 0,
-        image: 'https://picsum.photos/200/300',
-        title: 'asdasdasd',
-        price: 15,
-        order_number: 15651,
-        quantity: 0,
-      },
-      {
-        id: 0,
-        image: 'https://picsum.photos/200/300',
-        title: 'asdasdasd',
-        price: 15,
-        order_number: 15651,
-        quantity: 0,
-      },
-      {
-        id: 0,
-        image: 'https://picsum.photos/200/300',
-        title: 'asdasdasd',
-        price: 15,
-        order_number: 15651,
-        quantity: 0,
-      },
-      {
-        id: 0,
-        image: 'https://picsum.photos/200/300',
-        title: 'asdasdasd',
-        price: 15,
-        order_number: 15651,
-        quantity: 0,
-      },
-      {
-        id: 0,
-        image: 'https://picsum.photos/200/300',
-        title: 'asdasdasd',
-        price: 15,
-        order_number: 15651,
-        quantity: 0,
-      },
-      {
-        id: 0,
-        image: 'https://picsum.photos/200/300',
-        title: 'asdasdasd',
-        price: 15,
-        order_number: 15651,
-        quantity: 0,
-      },
-      {
-        id: 0,
-        image: 'https://picsum.photos/200/300',
-        title: 'asdasdasd',
-        price: 15,
-        order_number: 15651,
-        quantity: 0,
-      },
-      {
-        id: 0,
-        image: 'https://picsum.photos/200/300',
-        title: 'asdasdasd',
-        price: 15,
-        order_number: 15651,
-        quantity: 0,
-      },
-      {
-        id: 0,
-        image: 'https://picsum.photos/200/300',
-        title: 'asdasdasd',
-        price: 15,
-        order_number: 15651,
-        quantity: 0,
-      },
-      {
-        id: 0,
-        image: 'https://picsum.photos/200/300',
-        title: 'asdasdasd',
-        price: 15,
-        order_number: 15651,
-        quantity: 0,
-      },
-      {
-        id: 0,
-        image: 'https://picsum.photos/200/300',
-        title: 'asdasdasd',
-        price: 15,
-        order_number: 15651,
-        quantity: 0,
-      },
-    ],
-  }),
-}
+  
+  computed : {
+    products(){
+      return this.$store.getters.getProducts
+    }
+  },
+//   created(){
+//     // this.$store.dispatch( 'getProduct', {
+//     //   id: this.$route.params.product
+//     // });
+//       this.product= this.$store.getters.getProduct;
+// },
+
+ 
+}  
 </script>

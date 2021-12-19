@@ -38,5 +38,17 @@
     "stylelint": "^13.13.1",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard": "^22.0.0"
-  }
+  },
+  "description": "```bash\r # install dependencies\r $ yarn install",
+  "main": ".eslintrc.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahmetozyoruk/amway_website.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ahmetozyoruk/amway_website/issues"
+  },
+  "homepage": "https://github.com/ahmetozyoruk/amway_website#readme"
 }
