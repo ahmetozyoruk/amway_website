@@ -36,6 +36,9 @@ export default {
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
   ],
+  router: {
+    middleware: ['auth']
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -43,6 +46,30 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    [
+      '@nuxtjs/firebase',
+      {
+        config: {
+            apiKey: "AIzaSyBDWGwlHFE6qhmu3E_ZzIQX_N1zWhzUmNg",
+            authDomain: "amway-e9f52.firebaseapp.com",
+            projectId: "amway-e9f52",
+            storageBucket: "amway-e9f52.appspot.com",
+            messagingSenderId: "789384978570",
+            appId: "1:789384978570:web:40b24dedab980de1030d73",
+        },
+        services: {
+          auth: {
+            persistence: 'local', // default
+            initialize: {
+              onAuthStateChangedAction: 'onAuthStateChangedAction',
+              subscribeManually: false
+            },
+            ssr: false,
+          }
+        }
+      }
+    ]
+
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

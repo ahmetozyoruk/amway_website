@@ -90,12 +90,15 @@
                 @input="$v.password.$touch()"
                 @blur="$v.password.$touch()"
               ></v-text-field>
-              <v-btn block color="#002F5F" class="white--text"  @click="submit">SING IN</v-btn><v-spacer></v-spacer>
+              <v-btn block color="#002F5F" class="white--text"  @click="login">SING IN</v-btn>
+              <v-spacer></v-spacer>
               <div>
               <v-row md="12">
                 <v-spacer></v-spacer>
                 <v-col  md="5">
+                  <v-btn @click="login">
                   <h4 style="color:#007699"> Forgot Password</h4>
+                  </v-btn>
                 </v-col>
                 <v-divider vertical light></v-divider>
                 <v-col md="5">
@@ -172,6 +175,31 @@ export default {
     submit() {
       this.$v.$touch()
     },
+    login() {
+      let that = this
+      this.$fire.auth.signInWithEmailAndPassword(this.email, this.password)
+      .catch(function (error){
+        that.snackbarText = error.message
+        that.snackbar = true
+      }).then((user) => {
+        //we are signed in
+        $nuxt.$router.push('/')
+      })
+    },
+    forgotPassword() {
+      let that = this
+      this.$fire.auth.sendPasswordResetEmail(this.email)
+      .then(function (){
+        that.snackbarText = 'reset link sent to ' + that.email
+        that.snackbar = true
+      })
+      .catch(function (error) {
+        that.snackbarText = error.message
+        that.snackbar = true
+      })
+    }
+  
+
   },
 }
 </script>

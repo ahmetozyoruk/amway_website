@@ -55,7 +55,8 @@
         <v-divider vertical light></v-divider>
         <v-btn text to="Register" class="my-3"> Register </v-btn>
         <v-divider vertical light></v-divider>
-
+        <v-btn text @click="$router.push('/SignOut')" class="my-3"> Sign Out </v-btn>
+        <v-divider vertical light></v-divider>
         <v-btn icon to="Basket" class="my-2" >
           <v-icon large > {{ icons.mdiCart }} </v-icon>
         </v-btn>
