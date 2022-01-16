@@ -35,11 +35,20 @@ export default {
     '@nuxtjs/stylelint-module',
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    '@nuxtjs/apollo'
   ],
   router: {
     middleware: ['auth']
   },
-
+  
+  apollo:{
+    clientConfigs:{
+      default:{
+        httpEndpoint: 'http://localhost:4000/graphql/'
+      }
+    }
+  },
+  
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
