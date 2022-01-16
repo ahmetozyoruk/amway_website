@@ -18,6 +18,8 @@
     "@nuxtjs/firebase": "^7.4.1",
     "@nuxtjs/pwa": "^3.3.5",
     "core-js": "^3.15.1",
+    "express": "^4.16.2",
+    "express-graphql": "^0.6.11",
     "firebase": "^8.2.7",
     "json-server": "^0.17.0",
     "nuxt": "^2.15.7",
