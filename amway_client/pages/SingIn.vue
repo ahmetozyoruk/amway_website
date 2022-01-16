@@ -96,9 +96,7 @@
               <v-row md="12">
                 <v-spacer></v-spacer>
                 <v-col  md="5">
-                  <v-btn style="" @click="login">
-                  <h4 style="color:#007699"> Forgot Password</h4>
-                  </v-btn>
+                  <h4 @click="login" style="color:#007699; cursor: pointer;"> Forgot Password</h4>
                 </v-col>
                 <v-divider vertical light></v-divider>
                 <v-col md="5">
