@@ -66,22 +66,31 @@
           </div>
           <v-divider />
           <v-container class="pa-10">
-            <h1 style="font-size: 1.9rem; color:#1b0d5e;" class="my-3" >Create your Amway ID</h1>
+            <h1 style="font-size: 1.9rem; color: #1b0d5e" class="my-3">
+              Create your Amway ID
+            </h1>
             <form>
               <v-row md="1">
-              <v-col md="10" class=" my-5 ">
-              <h2 class="my-1" style="font-size:medium;color:#1b0d5e" >Country where you do business with Amway </h2></v-col>
-              <v-col md="2" class=" my-3 ">
-              <v-btn icon>
-              <v-icon small> {{ icons.mdiHelpCircle }} </v-icon>
-              </v-btn></v-col></v-row>
+                <v-col md="10" class="my-5">
+                  <h2 class="my-1" style="font-size: medium; color: #1b0d5e">
+                    Country where you do business with Amway
+                  </h2></v-col
+                >
+                <v-col md="2" class="my-3">
+                  <v-btn icon>
+                    <v-icon small> {{ icons.mdiHelpCircle }} </v-icon>
+                  </v-btn></v-col
+                ></v-row
+              >
               <v-select
                 :items="items"
                 label="Turkey "
                 color="#1b0d5e"
                 outlined
               ></v-select>
-              <h2 class="my-2" style="font-size:medium;color:#1b0d5e" >Amway ID </h2>
+              <h2 class="my-2" style="font-size: medium; color: #1b0d5e">
+                Amway ID
+              </h2>
               <v-text-field
                 v-model="email"
                 :error-messages="emailErrors"
@@ -91,7 +100,9 @@
                 @input="$v.email.$touch()"
                 @blur="$v.email.$touch()"
               ></v-text-field>
-              <h2 class="my-2" style="font-size:medium;color:#1b0d5e" >Create New Password </h2>
+              <h2 class="my-2" style="font-size: medium; color: #1b0d5e">
+                Create New Password
+              </h2>
               <v-text-field
                 v-model="password"
                 :append-icon="icons.mdiEyeOffOutline"
@@ -103,9 +114,11 @@
                 @input="$v.password.$touch()"
                 @blur="$v.password.$touch()"
               ></v-text-field>
-              <h2 class="my-2" style="font-size:medium;color:#1b0d5e" >Confirm New Password </h2>
+              <h2 class="my-2" style="font-size: medium; color: #1b0d5e">
+                Confirm New Password
+              </h2>
               <v-text-field
-                v-model="password"
+                v-model="password2"
                 :error-messages="nameErrors"
                 :append-icon="icons.mdiEyeOffOutline"
                 type="password"
@@ -114,10 +127,21 @@
                 outlined
                 @input="$v.password.$touch()"
                 @blur="$v.password.$touch()"
-                ></v-text-field>
+              ></v-text-field>
 
-              <v-btn block color="#002F5F" class="white--text"  @click="submit">CONTINUE</v-btn>
+              <v-btn block color="#002F5F" class="white--text" @click="submit"
+                >CONTINUE</v-btn
+              >
             </form>
+            <v-snackbar
+              :timeout="4000"
+              v-model="snackbar"
+              absolute
+              bottom
+              center
+            >
+              {{ snackbarText }}
+            </v-snackbar>
           </v-container>
         </v-list-item-content>
       </v-list-item>
@@ -136,8 +160,8 @@
 
 <script>
 import { mdiClose } from '@mdi/js'
-import { mdiHelpCircle } from '@mdi/js';
-import { mdiEyeOffOutline } from '@mdi/js';
+import { mdiHelpCircle } from '@mdi/js'
+import { mdiEyeOffOutline } from '@mdi/js'
 import { validationMixin } from 'vuelidate'
 import { required, email } from 'vuelidate/lib/validators'
 
@@ -146,7 +170,6 @@ export default {
   validations: {
     password: { required },
     email: { required, email },
-
   },
   data() {
     return {
@@ -156,10 +179,13 @@ export default {
         mdiEyeOffOutline,
       },
       password: '',
+      password2: '',
       email: '',
       name: '',
       phoneNumber: '',
-      items: ['Turkey','Netherlands', 'New Zealand', 'Norway', 'Panama'],
+      items: ['Turkey', 'Netherlands', 'New Zealand', 'Norway', 'Panama'],
+      snackbar: false,
+      snackbarText: 'No error message',
     }
   },
   computed: {
@@ -187,6 +213,25 @@ export default {
   methods: {
     submit() {
       this.$v.$touch()
+    },
+    Register() {
+      if (password !== password2) {
+        that.snackbarText = 'please! Enter equal password.'
+        that.snackbar = true
+      } else {
+        this.$fire.auth
+          .createUserWithEmailAndPassword(this.email, this.password)
+          .catch(function (error) {
+            that.snackbarText = error.message
+            that.snackbar = true
+          })
+          .then((user) => {
+            //we are signed in
+            // $nuxt.$router.push('/')
+            that.snackbarText = 'Succesfull! Registered.'
+            that.snackbar = true
+          })
+      }
     },
   },
 }
