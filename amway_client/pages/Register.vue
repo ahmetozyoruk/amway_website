@@ -129,7 +129,7 @@
                 @blur="$v.password.$touch()"
               ></v-text-field>
 
-              <v-btn block color="#002F5F" class="white--text" @click="submit"
+              <v-btn block color="#002F5F" class="white--text" @click="Register"
                 >CONTINUE</v-btn
               >
             </form>
@@ -211,11 +211,9 @@ export default {
   },
 
   methods: {
-    submit() {
-      this.$v.$touch()
-    },
     Register() {
-      if (password !== password2) {
+      let that = this
+      if (this.password !== this.password2) {
         that.snackbarText = 'please! Enter equal password.'
         that.snackbar = true
       } else {
@@ -228,7 +226,6 @@ export default {
           .then((user) => {
             //we are signed in
             // $nuxt.$router.push('/')
-            that.snackbarText = 'Succesfull! Registered.'
             that.snackbar = true
           })
       }
