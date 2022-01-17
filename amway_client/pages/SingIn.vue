@@ -65,10 +65,14 @@
             </v-btn>
           </div>
           <v-divider />
-           <v-container class="pa-10">
-             <h1 style="font-size: 2rem; color:#1b0d5e;" class="my-3" >  SING IN</h1>
-             <form>
-              <h2 class="my-2" style="font-size:medium;color:#1b0d5e" >Amway ID </h2>
+          <v-container class="pa-10">
+            <h1 style="font-size: 2rem; color: #1b0d5e" class="my-3">
+              SING IN
+            </h1>
+            <form>
+              <h2 class="my-2" style="font-size: medium; color: #1b0d5e">
+                Amway ID
+              </h2>
               <v-text-field
                 v-model="email"
                 :error-messages="emailErrors"
@@ -78,7 +82,9 @@
                 @input="$v.email.$touch()"
                 @blur="$v.email.$touch()"
               ></v-text-field>
-              <h2 class="my-2" style="font-size:medium;color:#1b0d5e" > Password </h2>
+              <h2 class="my-2" style="font-size: medium; color: #1b0d5e">
+                Password
+              </h2>
               <v-text-field
                 v-model="password"
                 :append-icon="icons.mdiEyeOffOutline"
@@ -90,21 +96,35 @@
                 @input="$v.password.$touch()"
                 @blur="$v.password.$touch()"
               ></v-text-field>
-              <v-btn block color="#002F5F" class="white--text"  @click="submit">SING IN</v-btn><v-spacer></v-spacer>
+              <v-btn block color="#002F5F" class="white--text" @click="login"
+                >SING IN</v-btn
+              >
+              <v-spacer></v-spacer>
               <div>
-              <v-row md="12">
-                <v-spacer></v-spacer>
-                <v-col  md="5">
-                  <h4 style="color:#007699"> Forgot Password</h4>
-                </v-col>
-                <v-divider vertical light></v-divider>
-                <v-col md="5">
-                  <h4 style="color:#007699"> Forgot Amway ID</h4>
-                </v-col>
-                <v-spacer></v-spacer>
-              </v-row> 
+                <v-row md="12">
+                  <v-spacer></v-spacer>
+                  <v-col md="5">
+                    <h4 @click="forgotPassword" style="color: #007699; cursor: pointer">
+                      Forgot Password
+                    </h4>
+                  </v-col>
+                  <v-divider vertical light></v-divider>
+                  <v-col md="5">
+                    <h4 style="color: #007699">Forgot Amway ID</h4>
+                  </v-col>
+                  <v-spacer></v-spacer>
+                </v-row>
               </div>
             </form>
+            <v-snackbar
+              :timeout="4000"
+              v-model="snackbar"
+              absolute
+              bottom
+              center
+            >
+              {{ snackbarText }}
+            </v-snackbar>
           </v-container>
         </v-list-item-content>
       </v-list-item>
@@ -123,8 +143,8 @@
 
 <script>
 import { mdiClose } from '@mdi/js'
-import { mdiHelpCircle } from '@mdi/js';
-import { mdiEyeOffOutline } from '@mdi/js';
+import { mdiHelpCircle } from '@mdi/js'
+import { mdiEyeOffOutline } from '@mdi/js'
 import { validationMixin } from 'vuelidate'
 import { required, email } from 'vuelidate/lib/validators'
 
@@ -133,7 +153,6 @@ export default {
   validations: {
     password: { required },
     email: { required, email },
-
   },
   data() {
     return {
@@ -143,7 +162,9 @@ export default {
         mdiEyeOffOutline,
       },
       password: '',
-      email:'',
+      email: '',
+      snackbar: false,
+      snackbarText: 'No error message',
     }
   },
   computed: {
@@ -171,6 +192,33 @@ export default {
   methods: {
     submit() {
       this.$v.$touch()
+    },
+    login() {
+      let that = this
+      that.snackbarText = "You Signed in"
+      this.$fire.auth.signInWithEmailAndPassword(this.email, this.password)
+      .catch(function (error){
+        that.snackbarText = error.message
+        that.snackbar = true
+      }).then((user) => {
+        //we are signed in
+        // $nuxt.$router.push('/')
+        that.snackbar = true
+      })
+
+    },
+    forgotPassword() {
+      let that = this
+      this.$fire.auth
+        .sendPasswordResetEmail(this.email)
+        .then(function () {
+          that.snackbarText = 'reset link sent to ' + that.email
+          that.snackbar = true
+        })
+        .catch(function (error) {
+          that.snackbarText = error.message
+          that.snackbar = true
+        })
     },
   },
 }
