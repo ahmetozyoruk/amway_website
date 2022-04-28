@@ -1,5 +1,4 @@
 # amway_website
-VTS_G28_ER-1.png
 <div style="flex">
     <img src="./resim/7.png" width="100">
     <img src="./resim/1.png" width="100">
