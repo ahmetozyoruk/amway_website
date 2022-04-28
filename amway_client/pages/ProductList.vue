@@ -47,10 +47,10 @@
 </template>
 
 <script>
+import gql from 'graphql-tag'
 import ProductListItem from '~/components/ProductListItem.vue'
 import NavigatePageTree from '~/components/NavigatePageTree.vue'
 import CategoriProductList from '~/components/CategoriProductList.vue'
-import gql from 'graphql-tag'
 
 export default {
   components: {

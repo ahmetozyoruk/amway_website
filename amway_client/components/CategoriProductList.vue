@@ -47,10 +47,12 @@ export default {
 </script>
 
 <style>
-.noneBorder
+
+/* .noneBorder
 {
   border-left: 1px none;
   border-right: 1px none;
 
-}
+} */
+
 </style>
